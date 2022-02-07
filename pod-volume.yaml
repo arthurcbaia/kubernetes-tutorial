@@ -1,0 +1,23 @@
+# Meio de alocação de arquivos, de forma que ele fucniona atrelado a um pod, mas é persistente 
+# em relação a ele.
+apiVersion: v1
+kind: Pod
+metadata:
+  name: pod-volume
+spec:
+  containers:
+    - name: nginx-container
+      image: nginx:latest
+      volumeMounts:
+        - mountPath: /volume-pod
+          name: primeiro-volume
+    - name: jenkins
+      image: jenkins/jenkins:alpine
+      volumeMounts:
+        - mountPath: /volume-pod
+          name: primeiro-volume
+  volumes: 
+    - name: primeiro-volume
+      hostPath:
+        path: /home/volume-k8s
+        type: DirectoryOrCreate

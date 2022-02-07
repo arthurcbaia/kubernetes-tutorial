@@ -1,0 +1,25 @@
+#Permite criar um log de alterações nos pods, versionamento. Funciona em conjunto com o replica set, gerenciando os pods, de forma que ele cria 
+# automaticamente replicas
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: portal-noticias-deployment
+spec:
+  template:
+    metadata:
+      name: portal-noticias
+      labels:
+        app: portal-noticias
+    spec:
+      containers:
+        - name: portal-noticias-container
+          image: aluracursos/portal-noticias:1
+          ports:
+            - containerPort: 80
+          envFrom:
+            - configMapRef:
+                name: portal-configmap
+  replicas: 3
+  selector:
+    matchLabels:
+      app: portal-noticias

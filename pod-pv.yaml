@@ -1,0 +1,16 @@
+#permite o acesso a memoria persistida criada com pv e pvc, para criar dados 
+apiVersion: v1
+kind: Pod
+metadata:
+  name: pod-pv  
+spec:
+  containers:
+    - name: nginx-container
+      image: nginx:stable
+      volumeMounts:
+        - mountPath: /volume-pod
+          name: primeiro-pv
+  volumes: 
+    - name: primeiro-pv
+      persistentVolumeClaim:
+        claimName: pvc-1

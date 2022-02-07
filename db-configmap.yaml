@@ -1,0 +1,9 @@
+# Config maps servem pra gauardar variaveis de ambiente 
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: db-configmap
+data:
+  MYSQL_ROOT_PASSWORD: bololo
+  MYSQL_DATABASE: empresa
+  MYSQL_PASSWORD: bololo

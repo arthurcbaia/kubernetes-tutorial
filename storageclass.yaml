@@ -1,0 +1,10 @@
+#aloca dinamicamente recursos para o cluster, de maneira que é possivel alocar automaticamente
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: sc-1
+provisioner: kubernetes.io/gce-pd # para o gcp 
+parameters:
+  type: pd-standard
+  fstype: ext4
+  replication-type: none
